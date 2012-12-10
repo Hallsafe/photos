@@ -1,6 +1,8 @@
 Photos::Application.routes.draw do
-  resources :collections
+  devise_for :users
 
+  resources :collections
+  root to: 'collections#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
