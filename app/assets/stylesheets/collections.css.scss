@@ -1,3 +1,24 @@
 // Place all the styles related to the collections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.collection {
+	border-bottom: solid 1px #CCC;
+	padding: 6px 0;
+}
+
+.collection .creator {
+	color: #CCC;
+	font-style: italic;
+	font-size: 12px;
+	display: none;
+}
+
+.collection.hover .creator {
+	display: inline;
+}
+
+.collection p {
+	margin: 6px 0;
+}
+
