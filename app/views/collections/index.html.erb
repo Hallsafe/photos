@@ -8,7 +8,7 @@
   <div class="collection">
     <strong><%= link_to collection.title, collection %></strong>
     <span class="creator">
-    <%= "created by " + collection.name %>
+    <%= "created by " + collection.user.full_name %>
     <%= time_ago_in_words(collection.created_at) + " ago" %>
   </span>
     <p><%= collection.description %></p>
