@@ -12,6 +12,7 @@
     <%= time_ago_in_words(collection.created_at) + " ago" %>
   </span>
     <p><%= collection.description %></p>
+    Photos: <%= collection.photos.size %>
   </div>
 
 <% end %>

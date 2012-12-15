@@ -14,6 +14,11 @@
   <%= f.input :user_id, collection: User.all, label_method: :full_name %>
   <%= f.input :title %>
   <%= f.input :description %>
+
+<p>
+<%= link_to "Add a new Photo", new_photo_path(:collection_id => @collection), class: "btn" %>
+  </p>
+  
   <div class="actions">
     <%= f.button :submit %>
   </div>

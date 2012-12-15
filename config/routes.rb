@@ -1,4 +1,7 @@
 Photos::Application.routes.draw do
+  resources :photos
+
+
   devise_for :users
 
   resources :collections

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <b>Title:</b>
   <%= @collection.title %>
@@ -15,6 +16,16 @@
   <%= @collection.description %>
 </p>
 
+<p>
+<%= link_to "Add a new Photo", new_photo_path(:collection_id => @collection), class: "btn" %>
+	</p>
+	<% for photo in @collection.photos %>
+	<%= image_tag photo.image_url(:thumb).to_s if photo.image? %>
+  <div><%= link_to photo.name, photo %></div>
+  <div><%= link_to "remove", photo, :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>
+<br />
+
 
 <%= link_to 'Edit', edit_collection_path(@collection) %> |
-<%= link_to 'Back', collections_path %>
+<%= link_to 'All Collections', collections_path %>
