@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :collections
+  has_many :user_frienships
+  has_many :photos
+  has_many :friends, through: :user_frienships
 
   def full_name
   	first_name + " " + last_name
