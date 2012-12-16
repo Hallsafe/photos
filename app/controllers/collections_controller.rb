@@ -43,7 +43,7 @@ class CollectionsController < ApplicationController
   # POST /collections
   # POST /collections.json
   def create
-    @collection = Collection.new(params[:collection])
+    @collection = current_user.collections.new(params[:collection])
 
     respond_to do |format|
       if @collection.save
@@ -59,7 +59,10 @@ class CollectionsController < ApplicationController
   # PUT /collections/1
   # PUT /collections/1.json
   def update
-    @collection = Collection.find(params[:id])
+    @collection = current_user.collections.find(params[:id])
+    if params[:collection] && params[:collection].has_key?(:user_id)
+      params[:collection].delete(:user_id)
+    end
 
     respond_to do |format|
       if @collection.update_attributes(params[:collection])

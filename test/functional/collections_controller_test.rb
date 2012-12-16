@@ -17,7 +17,21 @@ class CollectionsControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "should re]nder the new page when logged in" do
+  test "should update collection for the current user when logged in" do
+    sign_in users(:joe)
+    put :update, id: @collection, collection: { title: @collection.title, user_id: users(:jim).id }
+    assert_redirected_to collection_path(assigns(:collection))
+    assert_equal assigns(:collection).user_id, users(:joe).id
+  end
+
+  test "should not update the collection if nothing has changed" do
+    sign_in users(:joe)
+    put :update, id: @collection
+    assert_redirected_to collection_path(assigns(:collection))
+    assert_equal assigns(:collection).user_id, users(:joe).id
+  end
+
+  test "should render the new page when logged in" do
     sign_in users(:joe)
     get :new
     assert_response :success
@@ -35,7 +49,15 @@ class CollectionsControllerTest < ActionController::TestCase
       post :create, collection: { description: @collection.description, title: @collection.title }
     end
 
+    test "should create collection for content user when logged in" do
+    sign_in users(:joe)
+
+    assert_difference('Collection.count') do
+      post :create, collection: { description: @collection.description, user_id(:jim).id }
+    end
+
     assert_redirected_to collection_path(assigns(:collection))
+    assert_equal assigns(:status).user_id, users(:jason).id
   end
 
   test "should show collection" do
