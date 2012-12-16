@@ -12,6 +12,10 @@ gem 'simple_form'
 gem 'rmagick'
 gem 'carrierwave'
 
+group :test do
+	gem 'shoulda'
+end
+
 group :development, :test do
 	gem 'sqlite3'
 end
