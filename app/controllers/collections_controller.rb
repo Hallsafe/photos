@@ -1,4 +1,7 @@
 class CollectionsController < ApplicationController
+
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
+
   # GET /collections
   # GET /collections.json
   def index

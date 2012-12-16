@@ -11,14 +11,28 @@ class CollectionsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:collections)
   end
 
-  test "should get new" do
+  test "should be redirected when not logged in" do
+    get :new
+    assert_response :redirect 
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should re]nder the new page when logged in" do
+    sign_in users(:joe)
     get :new
     assert_response :success
   end
 
-  test "should create collection" do
+  test "should be logged in to create a collection" do
+    post :create, collection: { content: "Hello" }
+    assert_response :redirect
+    assert_redirected_to new_users_session_path
+  end
+
+  test "should create collection when logged in" do
+    sign_in users(:joe)
     assert_difference('Collection.count') do
-      post :create, collection: { description: @collection.description, name: @collection.name, title: @collection.title }
+      post :create, collection: { description: @collection.description, title: @collection.title }
     end
 
     assert_redirected_to collection_path(assigns(:collection))
