@@ -19,11 +19,14 @@
 <p>
 <%= link_to "Add a new Photo", new_photo_path(:collection_id => @collection), class: "btn" %>
 	</p>
+  
 	<% for photo in @collection.photos %>
 	<%= image_tag photo.image_url(:thumb).to_s if photo.image? %>
   <div><%= link_to photo.name, photo %></div>
   <div><%= link_to "remove", photo, :confirm => 'Are you sure?', :method => :delete %>
+
 	<% end %>
+
 <br />
 
 

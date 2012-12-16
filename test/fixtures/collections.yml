@@ -2,10 +2,15 @@
 
 one:
   title: MyString
-  name: MyString
+  user: joe
   description: MyText
 
 two:
   title: MyString
-  name: MyString
+  user: joe
   description: MyText
+
+  three:
+  	title: MyString
+  	user: jim
+  	description: MyText
